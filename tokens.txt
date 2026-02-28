@@ -3,8 +3,5 @@
 # Format: any alphanumeric string
 
 TOKEN-ABC123-XYZ789
-TOKEN-USER001-2024
-TOKEN-PREMIUM-ALPHA
-TOKEN-BETA-TESTER-01
 
 # Add your tokens below (one per line):
