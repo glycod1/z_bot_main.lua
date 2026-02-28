@@ -1,0 +1,123 @@
+-- ╔══════════════════════════════════════════════════════════════════╗
+-- ║              Token Generator Utility                            ║
+-- ║           Generate unique access tokens easily                  ║
+-- ╚══════════════════════════════════════════════════════════════════╝
+
+-- This is a standalone utility to generate tokens
+-- Run this separately to create tokens for your users
+
+local function generateToken(username)
+    local chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    local random_suffix = ""
+    
+    -- Generate random 8-character suffix
+    math.randomseed(os.time() + os.clock() * 1000000)
+    for i = 1, 8 do
+        local rand = math.random(1, #chars)
+        random_suffix = random_suffix .. chars:sub(rand, rand)
+    end
+    
+    -- Format: TOKEN-USERNAME-RANDOMSUFFIX
+    local token = "TOKEN-" .. username:upper() .. "-" .. random_suffix
+    
+    return token
+end
+
+-- Generate tokens for multiple users
+local function generateMultipleTokens(count)
+    print("╔══════════════════════════════════════════════════════════════╗")
+    print("║            Token Generator - Batch Mode                     ║")
+    print("╚══════════════════════════════════════════════════════════════╝")
+    print("")
+    
+    for i = 1, count do
+        local token = generateToken("USER" .. string.format("%03d", i))
+        print(token)
+    end
+    
+    print("")
+    print("Generated " .. count .. " tokens")
+    print("Copy these to your tokens.txt file on GitHub")
+end
+
+-- Generate a single custom token
+local function generateCustomToken(username)
+    if not username or username == "" then
+        print("Error: Username cannot be empty")
+        return
+    end
+    
+    -- Remove spaces and special characters
+    username = username:gsub("[^%w]", "")
+    
+    if #username == 0 then
+        print("Error: Invalid username")
+        return
+    end
+    
+    local token = generateToken(username)
+    
+    print("╔══════════════════════════════════════════════════════════════╗")
+    print("║            Token Generator - Custom Mode                    ║")
+    print("╚══════════════════════════════════════════════════════════════╝")
+    print("")
+    print("Username: " .. username)
+    print("Token:    " .. token)
+    print("")
+    print("Give this token to: " .. username)
+    print("Add this token to tokens.txt on GitHub")
+    
+    return token
+end
+
+-- ════════════════════════════════════════════════════════════════════
+--                          USAGE EXAMPLES
+-- ════════════════════════════════════════════════════════════════════
+
+print("╔══════════════════════════════════════════════════════════════╗")
+print("║              Z_BOT Token Generator Utility                  ║")
+print("╚══════════════════════════════════════════════════════════════╝")
+print("")
+print("Choose an option:")
+print("1. Generate a custom token for a specific user")
+print("2. Generate multiple random tokens")
+print("3. Quick tokens (5 random tokens)")
+print("")
+
+-- OPTION 1: Generate custom token
+-- Usage: Uncomment and edit the username
+-- generateCustomToken("JohnDoe")
+
+-- OPTION 2: Generate multiple random tokens
+-- Usage: Uncomment and specify how many
+-- generateMultipleTokens(10)
+
+-- OPTION 3: Quick generate 5 tokens
+generateMultipleTokens(5)
+
+-- ════════════════════════════════════════════════════════════════════
+--                     MANUAL TOKEN EXAMPLES
+-- ════════════════════════════════════════════════════════════════════
+
+print("")
+print("═══════════════════════════════════════════════════════════════")
+print("MANUAL TOKEN FORMAT EXAMPLES:")
+print("═══════════════════════════════════════════════════════════════")
+print("")
+print("Format: TOKEN-[USERNAME]-[UNIQUE_ID]")
+print("")
+print("Examples:")
+print("  TOKEN-NASSER-ADMIN001")
+print("  TOKEN-JOHN-20240228")
+print("  TOKEN-MIKE-PREMIUM")
+print("  TOKEN-ALEX-BETA001")
+print("  TOKEN-SARAH-VIP2024")
+print("")
+print("Tips:")
+print("  - Use uppercase for better readability")
+print("  - Include username for tracking")
+print("  - Add date or category (ADMIN, VIP, BETA, etc.)")
+print("  - Make them unique and memorable")
+print("  - Keep a private record of who has which token")
+print("")
+print("═══════════════════════════════════════════════════════════════")
