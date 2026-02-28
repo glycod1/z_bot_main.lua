@@ -3,5 +3,6 @@
 # Format: any alphanumeric string
 TOKEN-MOAZ-MOZA
 TOKEN-ABC123-XYZ789
-
+TOKEN-CBA123-XYZ782
+TOKEN-GHS123-XYZ789
 # Add your tokens below (one per line):
